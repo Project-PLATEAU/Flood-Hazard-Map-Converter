@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>操作マニュアル </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="操作マニュアル ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="操作マニュアル">操作マニュアル</h1>
+
+<h1 id="1-本書について">1 本書について</h1>
+<p>本書では、洪水浸水想定区域の時系列データ変換システム（以下「本システム」という。）の操作手順について記載しています。</p>
+<h1 id="2-使い方">2 使い方</h1>
+<h2 id="2-1-ファイルの設定を編集する">2-1 ファイルの設定を編集する</h2>
+<p>システムを正しく動作させるために、設定用の変数を適切に変更してください。</p>
+<h3 id="設定ファイルの編集">設定ファイルの編集</h3>
+<p>リポジトリ内の <code>main.py</code> を開き、以下の変数を適切な値に変更してください。</p>
+<pre><code class="lang-python">input_path = &quot;./BP000_CSV/&quot; #インプットするCSVファイルのディレクトリ
+filename_end = 'm.csv' #インプットするCSVファイル名の末尾（※BP〇〇〇_△△△△△m.csv（例：BP001_00060m.csv）という形式のファイル名を想定しています。）
+output_file = './output.czml' #アウトプットするCZMLファイルのファイル名
+GSI_GEOID_FILE_NAME = 'gsigeo2011_ver2_2.asc' #ジオイドモデルのファイル名
+
+#読み込むファイルの開始時刻および終了時刻（※ファイル名の△△△△△mをベースとした分での指定）
+start_time = 0 #開始時刻
+stop_time = 1440 #終了時刻
+
+##CZML開始の時刻（UTC）
+year_t = 2025 #年
+mon_t = 3 #月
+day_t = 21 #日
+hour_t = 0 #時
+min_t = 0 #分
+
+#浸水の色分け（[R,G,B,A]）
+flood_color = [100, 160, 190, 230]
+
+# CSVの列名の辞書（左側を読み込むCSVの属性名に変更してください。右側は変更しないでください。)
+rename_mapping = {
+    'メッシュコード': 'MESH',
+    '標高': 'dem',
+    '浸水深': 'flood_depth',
+    '流速': 'flow_velocity',
+    'P1緯度': 'P1_lat',
+    'P1経度': 'P1_lon',
+    'P2緯度': 'P2_lat',
+    'P2経度': 'P2_lon',
+    'P3緯度': 'P3_lat',
+    'P3経度': 'P3_lon',
+    'P4緯度': 'P4_lat',
+    'P4経度': 'P4_lon'
+}
+</code></pre>
+<h2 id="22-pythonファイルを実行する">2.2. Pythonファイルを実行する</h2>
+<p>設定が完了したら、以下のコマンドを実行してシステムを起動してください。</p>
+<pre><code class="lang-sh">python main.py
+</code></pre>
+<p>または</p>
+<pre><code class="lang-sh">python3 main.py
+</code></pre>
+<p><strong>実行後の確認</strong></p>
+<ul>
+<li>システムが正常に動作すると、指定したフォルダ内に出力結果が格納されます。</li>
+<li>エラーメッセージが出る場合は、必要なライブラリが正しくインストールされているか <code>pip list</code> で確認してください。</li>
+<li>ジオイド・モデルが正しく読み込めない場合、ファイルパス (<code>GSI_GEOID_FILE_NAME</code>) を確認してください。</li>
+</ul>
+<h1 id="3-出力データ">3 出力データ</h1>
+<p>解析で出力されるデータは以下のとおりです。</p>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>出力データ</th>
+<th>内容</th>
+<th>データ形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>洪水浸水想定区域の時系列データ変換</td>
+<td>洪水浸水想定区域の時系列データ</td>
+<td>入力した洪水浸水想定区域を時系列へ変換したデータ。</td>
+<td>CZML</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-1-洪水浸水想定区域の時系列データ">3-1 洪水浸水想定区域の時系列データ</h2>
+<p>洪水浸水想定区域の時系列データはCZML形式で出力されます。</p>
+<p><img src="../resources/index1.png" alt=""></p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

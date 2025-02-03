@@ -1,0 +1,17 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "title": "洪水浸水想定区域の時系列データ変換システム",
+    "keywords": "洪水浸水想定区域の時系列データ変換システム 洪水浸水想定区域モデルを活用し、時系列で推移する浸水深を表現するデータへ変換するためのシステムである。"
+  },
+  "manual/devMan.html": {
+    "href": "manual/devMan.html",
+    "title": "環境構築手順書",
+    "keywords": "環境構築手順書 1 本書について 本書では、洪水浸水想定区域の時系列データ変換システム（以下「本システム」という。）の利用環境構築手順について記載しています。本システムの構成や仕様の詳細については以下も参考にしてください。 技術検証レポート 2 動作環境 本システムの動作環境は以下のとおりです。 項目 動作環境 推奨環境 OS Microsoft Windows （または Linux または Mac？） 同左 CPU Intel Core i3以上 Intel Core i5以上 メモリ 4GB以上 8GB以上 ディスプレイ解像度 不問 同左 ネットワーク 不要 同左 3 インストール手順 3-1 Python をインストールする 本システムを実行するには Python が必要です。公式サイト（https://www.python.org/downloads/）から適切なバージョンの Python をダウンロードし、インストールしてください。 インストール時のポイント 「Add Python to PATH」にチェックを入れる（Windows の場合） インストール完了後、以下のコマンドで Python が正しくインストールされているか確認してください。 python --version または python3 --version バージョンが表示されれば、インストールは成功です。 3-2 必要なライブラリをインストールする 本システムが必要とするライブラリを requirements.txt を使用してインストールしてください。 コマンドを入力する場所 Windows の場合: Win + R → cmd と入力 → Enter Mac の場合: Command + Space → 「ターミナル」と検索 Linux の場合: Ctrl + Alt + T インストールコマンド python -m pip install -r requirements.txt requirements.txt の内容: pandas==2.2.2 geopandas==1.0.1 shapely==2.0.5 Windows で pip コマンドが認識されない場合の対処法 python -m ensurepip --default-pip python -m pip install --upgrade pip python -m pip install -r requirements.txt 3-3 ジオイド・モデルのダウンロード 本システムでは、国土地理院のジオイド高を変換するためのジオイド・モデルが必要です。 ダウンロード手順 国土地理院のダウンロードページ にアクセス 「ASCII 形式のデータ」 から gsigeo2011_ver2_2_asc.zip をダウンロード ダウンロードした gsigeo2011_ver2_2_asc.zip を プログラムと同じフォルダ に格納 gsigeo2011_ver2_2_asc.zip を解凍し、以下のファイルがあることを確認 gsigeo2011_ver2_2.asc 4 準備物一覧 本システムを利用するために以下のデータを入手します。 データ種別 機能 用途 入力方法 ① ジオイド・モデル 国土地理院のダウンロードページからダウンロードします。 ジオイド高への変換 洪水浸水想定区域の時系列データ変換 格納ファイルパスを指定"
+  },
+  "manual/userMan.html": {
+    "href": "manual/userMan.html",
+    "title": "操作マニュアル",
+    "keywords": "操作マニュアル 1 本書について 本書では、洪水浸水想定区域の時系列データ変換システム（以下「本システム」という。）の操作手順について記載しています。 2 使い方 2-1 ファイルの設定を編集する システムを正しく動作させるために、設定用の変数を適切に変更してください。 設定ファイルの編集 リポジトリ内の main.py を開き、以下の変数を適切な値に変更してください。 input_path = \"./BP000_CSV/\" #インプットするCSVファイルのディレクトリ filename_end = 'm.csv' #インプットするCSVファイル名の末尾（※BP〇〇〇_△△△△△m.csv（例：BP001_00060m.csv）という形式のファイル名を想定しています。） output_file = './output.czml' #アウトプットするCZMLファイルのファイル名 GSI_GEOID_FILE_NAME = 'gsigeo2011_ver2_2.asc' #ジオイドモデルのファイル名 #読み込むファイルの開始時刻および終了時刻（※ファイル名の△△△△△mをベースとした分での指定） start_time = 0 #開始時刻 stop_time = 1440 #終了時刻 ##CZML開始の時刻（UTC） year_t = 2025 #年 mon_t = 3 #月 day_t = 21 #日 hour_t = 0 #時 min_t = 0 #分 #浸水の色分け（[R,G,B,A]） flood_color = [100, 160, 190, 230] # CSVの列名の辞書（左側を読み込むCSVの属性名に変更してください。右側は変更しないでください。) rename_mapping = { 'メッシュコード': 'MESH', '標高': 'dem', '浸水深': 'flood_depth', '流速': 'flow_velocity', 'P1緯度': 'P1_lat', 'P1経度': 'P1_lon', 'P2緯度': 'P2_lat', 'P2経度': 'P2_lon', 'P3緯度': 'P3_lat', 'P3経度': 'P3_lon', 'P4緯度': 'P4_lat', 'P4経度': 'P4_lon' } 2.2. Pythonファイルを実行する 設定が完了したら、以下のコマンドを実行してシステムを起動してください。 python main.py または python3 main.py 実行後の確認 システムが正常に動作すると、指定したフォルダ内に出力結果が格納されます。 エラーメッセージが出る場合は、必要なライブラリが正しくインストールされているか pip list で確認してください。 ジオイド・モデルが正しく読み込めない場合、ファイルパス (GSI_GEOID_FILE_NAME) を確認してください。 3 出力データ 解析で出力されるデータは以下のとおりです。 機能 出力データ 内容 データ形式 洪水浸水想定区域の時系列データ変換 洪水浸水想定区域の時系列データ 入力した洪水浸水想定区域を時系列へ変換したデータ。 CZML 3-1 洪水浸水想定区域の時系列データ 洪水浸水想定区域の時系列データはCZML形式で出力されます。"
+  }
+}
