@@ -3,7 +3,7 @@
 ![概要](img/tutorial_001.png) 
 
 ## 1. 概要
-本リポジトリでは、Project PLATEAUの令和6年度のユースケース開発業務の一部であるUC24-012「地区防災計画作成支援ツールの開発」について、その成果物である「洪水浸水想定区域の時系列データ変換システム」のソースコードを公開しています。
+本リポジトリでは、Project PLATEAUの令和6年度のユースケース開発業務の一部であるUC24-12「地区防災計画作成支援ツールの開発」について、その成果物である「洪水浸水想定区域の時系列データ変換システム」のソースコードを公開しています。
 
 「洪水浸水想定区域の時系列データ変換システム」は、洪水浸水想定区域モデルを活用し、時系列で推移する浸水深を表現するデータへ変換するためのシステムです。
 
@@ -12,7 +12,7 @@
 「洪水浸水想定区域の時系列データ変換システム」では、洪水浸水想定区域モデルを時系列で推移する浸水深を表現するデータへ変換することを目的として本システムを開発しました。
 なお、データ変換に使用する洪水浸水想定区域モデルは、国土交通省より公表されている[洪水浸水想定区域図作成マニュアル](https://www.mlit.go.jp/river/shishin_guideline/pdf/manual_kouzuishinsui_1710.pdf)に準拠したデータであることを想定している。
 本システムは、オープンソースソフトウェアとして開発されています。
-本システムの詳細については[技術検証レポート](xxxxx.pdf)を参照してください。
+本システムの詳細については[技術検証レポート](https://www.mlit.go.jp/plateau/file/libraries/doc/plateau_tech_doc_0107_ver01.pdf)を参照してください。
 
 ## 3. 利用手順
 本システムの構築手順及び利用手順については[利用チュートリアル](https://project-plateau.github.io/Flood-Hazard-Map-Converter/)を参照してください。
@@ -76,6 +76,6 @@
 - 本リポジトリの利用により生じた損失及び損害等について、国土交通省はいかなる責任も負わないものとします。
 
 ## 10. 参考資料
-- 技術検証レポート: xxxx
+- 技術検証レポート: https://www.mlit.go.jp/plateau/file/libraries/doc/plateau_tech_doc_0107_ver01.pdf
 - PLATEAU WebサイトのUse caseページ「地区防災計画作成支援ツールの開発」: https://www.mlit.go.jp/plateau/use-case/uc24-12/
 - 洪水浸水想定区域図作成マニュアル：https://www.mlit.go.jp/river/shishin_guideline/pdf/manual_kouzuishinsui_1710.pdf
