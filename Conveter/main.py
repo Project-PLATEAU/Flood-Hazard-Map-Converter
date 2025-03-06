@@ -4,7 +4,7 @@
 input_path = "./BP000_CSV/" #インプットするCSVファイルのディレクトリ
 filename_end = 'm.csv' #インプットするCSVファイル名の末尾（※BP〇〇〇_△△△△△m.csv（例：BP001_00060m.csv）という形式のファイル名を想定しています。）
 output_file = './output.czml' #アウトプットするCZMLファイルのファイル名
-GSI_GEOID_FILE_NAME = 'gsigeo2011_ver2_2.asc' #ジオイドモデルのファイル名
+GSI_GEOID_FILE_NAME = 'gsigeo2011_ver2_2.asc' #インプットするジオイドモデルのファイル名
 
 #読み込むファイルの開始時刻および終了時刻（※ファイル名の△△△△△mをベースとした分での指定）
 start_time = 0 #開始時刻
