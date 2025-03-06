@@ -4,7 +4,7 @@
 
 本書では、洪水浸水想定区域の時系列データ変換システム（以下「本システム」という。）の利用環境構築手順について記載しています。本システムの構成や仕様の詳細については以下も参考にしてください。
 
-[技術検証レポート](https://www.mlit.go.jp/XXXX)
+[技術検証レポート](https://www.mlit.go.jp/plateau/file/libraries/doc/plateau_tech_doc_0107_ver01.pdf)
 
 # 2 動作環境
 
@@ -13,7 +13,7 @@
 
 | 項目               | 動作環境 | 推奨環境 |
 | ------------------ | ------------------- | ------------------------------ | 
-| OS                 | Microsoft Windows （または Linux または　Mac？）                             |  同左 | 
+| OS                 | Microsoft Windows （または Linux または　Mac）                             |  同左 | 
 | CPU                | Intel Core i3以上                            | Intel Core i5以上              | 
 | メモリ             | 4GB以上        | 8GB以上             | 
 | ディスプレイ解像度 | 不問            |  同左       | 
@@ -22,7 +22,7 @@
 # 3 インストール手順
 ## 3-1 Python をインストールする
 
-本システムを実行するには Python が必要です。公式サイト（[https://www.python.org/downloads/](https://www.python.org/downloads/)）から適切なバージョンの Python をダウンロードし、インストールしてください。
+本システムを実行するには Python が必要です。[公式サイト](https://www.python.org/downloads/)から3.12.4バージョンの Python をダウンロードし、インストールしてください。
 
 ### インストール時のポイント
 - 「Add Python to PATH」にチェックを入れる（Windows の場合）
@@ -77,7 +77,7 @@ python -m pip install -r requirements.txt
 ###  ダウンロード手順
 1. [国土地理院のダウンロードページ](https://fgd.gsi.go.jp/download/geoid.php) にアクセス
 2. **「ASCII 形式のデータ」** から `gsigeo2011_ver2_2_asc.zip` をダウンロード
-3. ダウンロードした `gsigeo2011_ver2_2_asc.zip` を **プログラムと同じフォルダ** に格納
+3. ダウンロードした `gsigeo2011_ver2_2_asc.zip` を **Converterフォルダ** に格納
 4. `gsigeo2011_ver2_2_asc.zip` を解凍し、以下のファイルがあることを確認
 
 ```

@@ -81,7 +81,7 @@
 
 <h1 id="1-本書について">1 本書について</h1>
 <p>本書では、洪水浸水想定区域の時系列データ変換システム（以下「本システム」という。）の利用環境構築手順について記載しています。本システムの構成や仕様の詳細については以下も参考にしてください。</p>
-<p><a href="https://www.mlit.go.jp/XXXX">技術検証レポート</a></p>
+<p><a href="https://www.mlit.go.jp/plateau/file/libraries/doc/plateau_tech_doc_0107_ver01.pdf">技術検証レポート</a></p>
 <h1 id="2-動作環境">2 動作環境</h1>
 <p>本システムの動作環境は以下のとおりです。</p>
 <table>
@@ -95,7 +95,7 @@
 <tbody>
 <tr>
 <td>OS</td>
-<td>Microsoft Windows （または Linux または　Mac？）</td>
+<td>Microsoft Windows （または Linux または　Mac）</td>
 <td>同左</td>
 </tr>
 <tr>
@@ -122,7 +122,7 @@
 </table>
 <h1 id="3-インストール手順">3 インストール手順</h1>
 <h2 id="3-1-python-をインストールする">3-1 Python をインストールする</h2>
-<p>本システムを実行するには Python が必要です。公式サイト（<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>）から適切なバージョンの Python をダウンロードし、インストールしてください。</p>
+<p>本システムを実行するには Python が必要です。<a href="https://www.python.org/downloads/">公式サイト</a>から3.12.4バージョンの Python をダウンロードし、インストールしてください。</p>
 <h3 id="インストール時のポイント">インストール時のポイント</h3>
 <ul>
 <li>「Add Python to PATH」にチェックを入れる（Windows の場合）</li>
@@ -161,7 +161,7 @@ python -m pip install -r requirements.txt
 <ol>
 <li><a href="https://fgd.gsi.go.jp/download/geoid.php">国土地理院のダウンロードページ</a> にアクセス</li>
 <li><strong>「ASCII 形式のデータ」</strong> から <code>gsigeo2011_ver2_2_asc.zip</code> をダウンロード</li>
-<li>ダウンロードした <code>gsigeo2011_ver2_2_asc.zip</code> を <strong>プログラムと同じフォルダ</strong> に格納</li>
+<li>ダウンロードした <code>gsigeo2011_ver2_2_asc.zip</code> を <strong>Converterフォルダ</strong> に格納</li>
 <li><code>gsigeo2011_ver2_2_asc.zip</code> を解凍し、以下のファイルがあることを確認</li>
 </ol>
 <pre><code>gsigeo2011_ver2_2.asc
